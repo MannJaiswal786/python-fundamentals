@@ -1,4 +1,5 @@
-from donations_pkg.homepage import show_homepage
+from donations_pkg.homepage import show_homepage, donate, show_donations
+from donations_pkg.user import login, register
 database = {"admin": "password123"}
 donations = []
 authorized_user = ""
@@ -18,13 +19,23 @@ while True:
     continue
 
  if option == 1:
-    print("TODO: Write Login Functionality")
+   username = input("Enter username: ")
+   password = input("Enter password: ")
+   authorized_user = login(database, username, password)
  elif option == 2:
-    print("TODO: Write Register Functionality")
+   username = input("Username: ")
+   password = input("Password: ")
+   authorized_user = register(database, username)
+   if authorized_user != "":
+      database[authorized_user] = password
  elif option == 3:
-    print("TODO: Write Donate Functionality")
+   if authorized_user == "":
+      print("You are not logged in")
+   else: 
+     donation_string = donate(authorized_user)
+     donations.append(donation_string)
  elif option == 4:
-    print("TODO: Show Donations")
+   show_donations(donations)
  elif option == 5:
     print("Exiting the program. Goodbye!!!")
     break
