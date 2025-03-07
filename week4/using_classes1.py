@@ -19,3 +19,4 @@ player2 = Player("Tanishq", 1800)
 
 print("Player1: ", player1.name, player1.hp)
 print("Player2: ", player2.name, player2.hp)
+
